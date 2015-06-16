@@ -1,9 +1,11 @@
-package com.rickyliang.trinity;
+package com.rickyliang.trinity.activities;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.rickyliang.trinity.R;
 
 
 public class MainActivity extends ActionBarActivity {
