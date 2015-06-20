@@ -2,10 +2,14 @@ package com.rickyliang.trinity.activities;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import com.rickyliang.trinity.R;
+import com.rickyliang.trinity.fragments.MainActivityFragment;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -14,6 +18,8 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, MainActivityFragment.newInstance(), null).commit();
     }
 
 
@@ -37,5 +43,35 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Log.d("DEBUG", "We went into back()");
+        int count = getSupportFragmentManager().getBackStackEntryCount();
+
+        if (count == 0) {
+            super.onBackPressed();
+            // additional code
+        } else {
+            // fragment-specific code
+            Animation goBack = AnimationUtils.loadAnimation(this, R.anim.slide_out_right);
+            goBack.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    getSupportFragmentManager().popBackStack();
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+                }
+            });
+            findViewById(R.id.animated_fragment).startAnimation(goBack);
+        }
+
     }
 }

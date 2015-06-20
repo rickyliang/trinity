@@ -2,4 +2,10 @@
     <string name="app_name">Trinity</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <!-- BUTTONS -->
+    <string name="next_button">Next</string>
+
+    <string name="animated_fragment">animated fragment animated fragment animated fragment
+        animated fragment animated fragment animated fragment animated fragment</string>
 </resources>
